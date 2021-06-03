@@ -12,7 +12,7 @@ from runtime.loop import TimeLoop
 import fv3gfs.util as util
 import runtime
 
-logging.basicConfig(level=logging.DEBUG)
+logging.getLogger("runtime").setLevel(logging.DEBUG)
 logging.getLogger("fv3gfs.util").setLevel(logging.WARN)
 logging.getLogger("fsspec").setLevel(logging.WARN)
 logging.getLogger("urllib3").setLevel(logging.WARN)
