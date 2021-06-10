@@ -142,7 +142,10 @@ class DenseModel(Estimator):
             x = hidden_layer(x)
         x = tf.keras.layers.Dense(n_features_out)(x)
         outputs = self.y_scaler.denormalize_layer(x)
-        model = tf.keras.Model(inputs=inputs, outputs=outputs)
+        rectified_outputs = tf.keras.layers.Activation(tf.keras.activations.relu)(
+            outputs
+        )
+        model = tf.keras.Model(inputs=inputs, outputs=rectified_outputs)
         model.compile(optimizer=self._optimizer, loss=self.loss)
         return model
 
