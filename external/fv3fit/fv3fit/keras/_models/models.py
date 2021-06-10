@@ -142,10 +142,7 @@ class DenseModel(Estimator):
             x = hidden_layer(x)
         x = tf.keras.layers.Dense(n_features_out)(x)
         outputs = self.y_scaler.denormalize_layer(x)
-        rectified_outputs = tf.keras.layers.Activation(tf.keras.activations.relu)(
-            outputs
-        )
-        model = tf.keras.Model(inputs=inputs, outputs=rectified_outputs)
+        model = tf.keras.Model(inputs=inputs, outputs=outputs)
         model.compile(optimizer=self._optimizer, loss=self.loss)
         return model
 
@@ -419,6 +416,38 @@ class DenseModel(Estimator):
 
         J = g.jacobian(y, mean_tf)[0, :, 0, :].numpy()
         return unpack_matrix(self.X_packer, self.y_packer, J)
+
+
+@io.register("packed-keras")
+@register_estimator("RectifiedDenseModel", DenseHyperparameters)
+class RectifiedDenseModel(DenseModel):
+    """
+    DenseModel with an additional ReLu activation layer after the denormalize
+    layer, to ensure positive outputs
+    """
+
+    def get_model(self, n_features_in: int, n_features_out: int) -> tf.keras.Model:
+        inputs = tf.keras.Input(n_features_in)
+        x = self.X_scaler.normalize_layer(inputs)
+        for i in range(self._depth - 1):
+            hidden_layer = tf.keras.layers.Dense(
+                self._width,
+                activation=tf.keras.activations.relu,
+                kernel_regularizer=self._kernel_regularizer,
+            )
+            if self._spectral_normalization:
+                hidden_layer = tfa.layers.SpectralNormalization(hidden_layer)
+            if self._gaussian_noise > 0.0:
+                x = tf.keras.layers.GaussianNoise(self._gaussian_noise)(x)
+            x = hidden_layer(x)
+        x = tf.keras.layers.Dense(n_features_out)(x)
+        outputs = self.y_scaler.denormalize_layer(x)
+        rectified_outputs = tf.keras.layers.Activation(tf.keras.activations.relu)(
+            outputs
+        )
+        model = tf.keras.Model(inputs=inputs, outputs=rectified_outputs)
+        model.compile(optimizer=self._optimizer, loss=self.loss)
+        return model
 
 
 def _fill_default(kwargs: dict, arg: Optional[Any], key: str, default: Any):
