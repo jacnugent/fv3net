@@ -418,7 +418,6 @@ class DenseModel(Estimator):
         return unpack_matrix(self.X_packer, self.y_packer, J)
 
 
-@io.register("packed-keras")
 @register_estimator("RectifiedDenseModel", DenseHyperparameters)
 class RectifiedDenseModel(DenseModel):
     """
