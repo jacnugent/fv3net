@@ -1,0 +1,736 @@
+    1  pwd
+    2  la
+    3  git clone https://github.com/jacnugent/fv3net.git
+    4  cd fv3net/
+    5  la
+    6  make create_environment
+    7  conda env list
+    8  conda activate fv3net
+    9  pwd
+   10  git checkout feature/all-physics-emu-prognostic
+   11  git rev-parse --show-toplevel
+   12  git branch
+   13  la
+   14  ls -la
+   15  ls -lah
+   16  cd workflows/
+   17  la
+   18  cd ..
+   19  la
+   20  git remote add upstream https://github.com/jacnugent/fv3net.git
+   21  git remote-v
+   22  git remote -v
+   23  git branch -a
+   24  git checkout remotes/origin/feature/all-phys-emu-prognostic
+   25  git checkout -b jacqn-emu-prognostic
+   26  git branch
+   27  la
+   28  cd workflows/
+   29  la
+   30  cd workflows/emulation
+   31  cd ..
+   32  cd workflows/emulation
+   33  mkdir /mnt/disks/scratch/emulation_data
+   34  SUBSET_DESTINATION=/mnt/disks/scratch/emulation_data 
+   35  make get_subsampled
+   36  ls
+   37  la
+   38  alias la="ls -lah"
+   39  la
+   40  cd .../..
+   41  cd ../..
+   42  la
+   43  cd /mnt/disks/scratch/emulation_data
+   44  la
+   45  cd ~
+   46  pwd
+   47  la
+   48  history > commands.txt
+   49  vi commands.txt 
+   50  cd /tmp/subset_training_data/testing/
+   51  la
+   52  cd validation-subsets/
+   53  la
+   54  cd simple-phys-hybridedmf-10day/
+   55  la
+   56  vi ~/commands.txt 
+   57  cd ~/fv3net/
+   58  la
+   59  cd workflows/emulation/
+   60  la
+   61  vi Makefile 
+   62  mv /tmp/subset_training_data/ /mnt/disks/scratch/emulation_data/.
+   63  cd /mnt/disks/scratch/emulation_data/
+   64  la
+   65  cd subset_training_data/
+   66  la
+   67  cd training/
+   68  la
+   69  cd training-subsets/
+   70  la
+   71  cd simple-phys-hybridedmf-10day/
+   72  la
+   73  cd /tmp/subset_training_data/
+   74  la
+   75  cd testing/
+   76  la
+   77  cd validation-subsets/
+   78  la
+   79  cd simple-phys-hybridedmf-10day/
+   80  la
+   81  cd ~/fv3net/
+   82  la
+   83  history
+   84  exit
+   85  jupyter lab --no-browser --port=8999 & 
+   86  conda activate fv3net/
+   87  conda env list
+   88  conda activate fv3net
+   89  jupyter lab
+   90  jupyter notebook
+   91  jupyter notebook --no-browser --port=8999 &
+   92  cd fv3net/
+   93  la
+   94  cd /mnt/disks/scratch/emulation_data/
+   95  la
+   96  ls
+   97  cd subset_training_data/
+   98  du -h
+   99  cd ..
+  100  la
+  101  du -h
+  102  cd /tmp/subset_training_data/
+  103  du -h
+  104  python -m ipykernel install --user --name fv3net
+  105  cd /mnt/disks/scratch/emulation_data/
+  106  la
+  107  cd subset_training_data/
+  108  la
+  109  cd training/
+  110  ls
+  111  cd training-subsets/
+  112  la
+  113  cd training-online-simple-hybedmf
+  114  la
+  115  cd ../simple-phys-hybridedmf-10day/
+  116  la
+  117  pwd
+  118  ls
+  119  cd /mnt/disks/scratch/emulation_data/subset_training_data/training/training_subsets/simple-phys-hybridedmf-10day
+  120  ncdump -h window_00000.nc 
+  121  cdo
+  122  tree
+  123  cd ../..
+  124  la
+  125  cd ..
+  126  la
+  127  cd ..
+  128  la
+  129  cd ..
+  130  la
+  131  cd /tmp/subset_training_data/
+  132  la
+  133  cd testing/
+  134  la
+  135  cd validation-subsets/
+  136  la
+  137  cd simple-phys-hybridedmf-10day/
+  138  la
+  139  cd ..
+  140  la
+  141  mv * /mtn/disks/scratch/emulation_data/
+  142  mv * /mtn/disks/scratch/emulation_data/.
+  143  mv * /mnt/disks/scratch/emulation_data/
+  144  la
+  145  cd /mnt/disks/scratch/emulation_data/
+  146  la
+  147  cd subset_training_data/
+  148  la
+  149  cd training/
+  150  la
+  151  cd training-subsets/
+  152  la
+  153  cd simple-phys-hybridedmf-10day/
+  154  la
+  155  cd ../
+  156  ls
+  157  cd training-online-simple-hybedmf/
+  158  la
+  159  cd ../../../
+  160  ls
+  161  cd ..
+  162  la
+  163  cd training/
+  164  la
+  165  cd training-subsets/
+  166  la
+  167  cd simple-phys-hybridedmf-10day/
+  168  la
+  169  du -h
+  170  cd ../../../
+  171  du -h
+  172  la
+  173  cd testing/
+  174  ls
+  175  cd validation-subsets/
+  176  la
+  177  cd simple-phys-hybridedmf-10day/
+  178  ls -la
+  179  ls > simple_testing.txt
+  180  cd ../training-online-simple-hybedmf/
+  181  ls > ~/training_online.txt
+  182  vi ../simple-phys-hybridedmf-10day/simple_testing.txt 
+  183  mv ../simple-phys-hybridedmf-10day/simple_testing.txt ~/.
+  184  la *.txt
+  185  cd ../../
+  186  cd ../training/
+  187  la
+  188  cd training-subsets/
+  189  la
+  190  cd simple-phys-hybridedmf-10day/
+  191  la
+  192  ls > ~/simple_training.txt
+  193  cd ../
+  194  ls
+  195  cd training-online-simple-hybedmf/
+  196  ls > ~/training_online_training.txt
+  197  cd ~
+  198  la
+  199  vi simple_testing.txt 
+  200  vi simple_training.txt 
+  201  vi training_online.txt 
+  202  vi training_online_training.txt 
+  203  cd /mnt/disks/scratch/emulation_data/
+  204  la
+  205  cd subset_training_data/
+  206  la
+  207  cd training/
+  208  la
+  209  cd training-subsets/
+  210  laa
+  211  ls
+  212  cd simple-phys-hybridedmf-10day/
+  213  la
+  214  vi ~/simple_training.txt 
+  215  vi ~/simple_testing.txt 
+  216  cd ../training-online-simple-hybedmf/
+  217  la
+  218  du -h
+  219  cd ../../..
+  220  cd ..
+  221  du -h
+  222  rm -r subset_training_data/
+  223  du -h
+  224  la
+  225  cd testing/
+  226  la
+  227  cd validation-subsets/
+  228  la
+  229  cd simple-phys-hybridedmf-10day/
+  230  la
+  231  cd ../../
+  232  la
+  233  cd ..
+  234  la
+  235  cd training/
+  236  la
+  237  du -h
+  238  cd ..
+  239  du -h
+  240  la
+  241  cd testing/
+  242  la
+  243  cd validation-subsets/
+  244  la
+  245  cd simple-phys-hybridedmf-10day/
+  246  la
+  247  pwd
+  248  jupyter notebook list
+  249  cd ~/fv3net/workflows/emulation/
+  250  la
+  251  mkdir dataset_exploration
+  252  mv dataset_exploration.ipynb dataset_exploration
+  253  conda deactivate
+  254  exit
+  255  la
+  256  vi .bashrc
+  257  vi .profile
+  258  vi .bashrc
+  259  exit
+  260  cd fv3net/
+  261  la
+  262  git branch
+  263  jn
+  264  conda activate fv3net
+  265  jn
+  266  top
+  267  conda info --envs
+  268  jupyter notebook list
+  269  conda info --envs
+  270  conda list
+  271  conda deactivate
+  272  conda activate default
+  273  conda list
+  274  conda deactivate
+  275  conda list
+  276  conda activate default
+  277  conda deactivate
+  278  exit
+  279  la
+  280  cd miniconda3/
+  281  la
+  282  cd ..
+  283  la
+  284  vi default-environment.yml 
+  285  cd fv3net/
+  286  make create_environment
+  287  conda activate fv3net
+  288  conda list
+  289  jn
+  290  conda deactivate
+  291  exit
+  292  conda activate fv3net
+  293  cd fv3net/
+  294  jn
+  295  conda deactivate
+  296  exit
+  297  cd fv3net/
+  298  conda activate fv3net
+  299  jn
+  300  cd fv3net/
+  301  conda activate fv3net
+  302  jn
+  303  exit
+  304  cd fv3net/
+  305  conda activate fv3net
+  306  cd workflows/emulation/
+  307  jn
+  308  cd ..
+  309  la
+  310  cd ..
+  311  la
+  312  cd examples/
+  313  la
+  314  cd ..
+  315  cd workflows/
+  316  laa
+  317  la
+  318  cd emulation/
+  319  la
+  320  jn
+  321  top
+  322  cd fv3net/workflows/emulation/
+  323  la
+  324  conda activate fv3net
+  325  jn
+  326  jupyter notebook list
+  327  exit
+  328  conda activate fv3net
+  329  jn
+  330  jupyter notebook list
+  331  fg
+  332  jupyter notebook list
+  333  exit
+  334  jupyter notebook list
+  335  conda activate fv3net
+  336  jupyter notebook list
+  337  conda deactivate
+  338  exit
+  339  cd fv3net/
+  340  conda activate fv3net
+  341  jn
+  342  top
+  343  fg
+  344  jupyter notebook list
+  345  conda deactivate
+  346  exit
+  347  cd fv3net/
+  348  conda activate fv3net
+  349  cd workflows/
+  350  cd emulation/
+  351  jn
+  352  top
+  353  fg
+  354  conda deactivate
+  355  exit
+  356  cd fv3net/workflows/emulation/
+  357  la
+  358  conda activate fv3
+  359  conda activate fv3net
+  360  jn
+  361  top
+  362  cd dataset_exploration/
+  363  la
+  364  cd fv3net/
+  365  la
+  366  cd fv3viz/
+  367  la
+  368  cd ../..
+  369  la
+  370  mkdir plots
+  371  top
+  372  cd plots/
+  373  pwd
+  374  la
+  375  cd ..
+  376  laa
+  377  la
+  378  rm RF_tendency_t\=3_z\=60.png 
+  379  cd plots/
+  380  rm *.png
+  381  top
+  382  fg
+  383  jupyter notebook list
+  384  cd ..
+  385  la
+  386  git remote -v
+  387  git add *.ipynb
+  388  cd ..
+  389  la
+  390  cd ..
+  391  la
+  392  vi .gitignore
+  393  cd workflows/emulation/dataset_exploration/
+  394  la
+  395  git add *.ipynb
+  396  git add -f *.ipynb
+  397  git commit -m "initial commit - notebooks to explore data and basic RF/LR"
+  398  git config --global user.email "jnug@uw.edu"
+  399  git config --global user.name "jacnugent"
+  400  git commit -m "initial commit - notebooks to explore data and basic RF/LR"
+  401  pwd
+  402  conda deactivate
+  403  exit
+  404  cd fv3net/
+  405  cd workflows/emulation/
+  406  conda activate fv3net
+  407  jn
+  408  cd mnt/disks/scratch
+  409  cd /mnt/disks/scratch
+  410  la
+  411  cd emulation_data/
+  412  la
+  413  cd ~/fv3net/workflows/emulation/
+  414  la
+  415  vi simple_hybridedmf_train.yaml
+  416  top
+  417  fg
+  418  cd fv3net/
+  419  conda activate fv3net
+  420  cd workflows/emulation/dataset_exploration/
+  421  la
+  422  jn
+  423  top
+  424  cd ..
+  425  la
+  426  vi Makefile 
+  427  fg
+  428  jupyter notebook list
+  429  vi Makefile 
+  430  ls /mnt/disks/scratch
+  431  ls /mnt/disks/scratch/emulation_data
+  432  vi Makefile 
+  433  SUBSET_SOURCE=gs://vcm-ml-scratch/andrep/all-physics-emu/training-subsets/simple-phys-hybridedmf-w-microphysics-12day/ SUBSET_DESTINATION=/mnt/disks/scratch/ make get_subsampled
+  434  cd /mnt/disks/scratch
+  435  la
+  436  cd emulation_data/
+  437  cd ../testing/
+  438  la
+  439  cd validation-subsets/
+  440  la
+  441  cd ../..
+  442  du -h
+  443  cd emulation_data/
+  444  la
+  445  cd testing/
+  446  la
+  447  cd validation-subsets/
+  448  la
+  449  cd ../../
+  450  cd ../training/
+  451  la
+  452  cd training-subsets/
+  453  la
+  454  cd simple-phys-hybridedmf-w-microphysics-12day/
+  455  la
+  456  cd ../../../testing/validation-subsets/
+  457  la
+  458  cd simple-phys-hybridedmf-w-microphysics-12day/
+  459  la
+  460  cd ../
+  461  cd simple-phys-hybridedmf-
+  462  cd simple-phys-hybridedmf-10day/
+  463  la
+  464  cd ../../../training/
+  465  la
+  466  cd training-subsets/
+  467  la 
+  468  du -h
+  469  cd ../../testing/validation-subsets/ 
+  470  du -h
+  471  cd simple-phys-hybridedmf-w-microphysics-12day/
+  472  la
+  473  cd ../../../training/training-subsets/
+  474  la
+  475  cd simple-phys-hybridedmf-
+  476  la
+  477  cd simple-phys-hybridedmf-w-microphysics-12day/
+  478  la
+  479  vi subset_config.yaml 
+  480  ls
+  481  cd ../../../testing/validation-subsets/simple-phys-hybridedmf-w-microphysics-12day/
+  482  ls
+  483  vi subset_config.yaml 
+  484  cd ../../../training/training-subsets/simple-phys-hybridedmf-w-microphysics-12day/
+  485  la
+  486  vi subset_config.yaml 
+  487  cd ~/fv3net/workflows/emulation/dataset_exploration/
+  488  jn
+  489  h
+  490  history
+  491  cd ..
+  492  vi Makefile 
+  493  vi train_emulator.py 
+  494  cd /mnt/disks/scratch
+  495  cd training/
+  496  cd training-subsets/
+  497  la
+  498  cd simple-phys-hybridedmf-w-microphysics-12day/
+  499  vi subset_config.yaml 
+  500  la
+  501  conda activate fv3net
+  502  cd fv3net/workflows/emulation/dataset_exploration/
+  503  alias
+  504  conda list
+  505  jn
+  506  fg
+  507  conda list
+  508  jupyter lab --no-browser --port=8999
+  509  vi ~/.bashrc 
+  510  jupyter lab --no-browser --port=8999
+  511  jupyter lab --no-browser --port=8999 &
+  512  pwd
+  513  top
+  514  fg
+  515  jn
+  516  top
+  517  pwd
+  518  cd plots/exploration/
+  519  cd ..
+  520  la
+  521  cd ..
+  522  la
+  523  pwd
+  524  fg
+  525  top
+  526  conda deactivate
+  527  exit
+  528  cd fv3net/
+  529  conda activate fv3net
+  530  cd workflows/emulation/
+  531  la
+  532  vi Makefile 
+  533  SUBSET_SOURCE=gs://vcm-ml-scratch/andrep/all-physics-emu/training-subsets/simple-phys-hybridedmf-w-microphysics-12day/ SUBSET_DESTINATION=/mnt/disks/scratch/ make get_subsampled
+  534  cd /mnt/scratch/disks
+  535  la
+  536  cd /mnt/disks/stractch
+  537  cd /mnt/disks/sractch
+  538  cd /mnt/disks/scratch
+  539  la
+  540  cd testing/
+  541  la
+  542  cd validation-subsets/
+  543  la
+  544  cd simple-phys-hybridedmf-w-microphysics-12day/
+  545  la
+  546  cd ../../../training/training-subsets/simple-phys-hybridedmf-w-microphysics-12day/
+  547  la
+  548  cd ~/fv3net/
+  549  cd workflows/emulation/dataset_exploration/
+  550  jl
+  551  top
+  552  conda activate fv3net
+  553  cd fv3net/workflows/emulation/dataset_exploration/
+  554  jl
+  555  fg
+  556  conda activate fv3net
+  557  cd ~/fv3net/workflows/emulation/dataset_exploration/
+  558  jl
+  559  jlpwd
+  560  pwd
+  561  top
+  562  pwd
+  563  top
+  564  pwd
+  565  gcloud init
+  566  gcloud auth login
+  567  gcloud auth login --no-launch-browser
+  568  fg
+  569  jl
+  570  fg
+  571  exit
+  572  conda activate fv3net
+  573  cd fv3net/workflows/emulation/dataset_exploration/
+  574  jl
+  575  fg
+  576  exit
+  577  conda activate fv3net
+  578  cd fv3net/workflows/emulation/
+  579  jn
+  580  fg
+  581  conda deactivate
+  582  exit
+  583  cd ~/fv3net/workflows/emulation/
+  584  conda activate jl
+  585  conda activate fv3net
+  586  jl
+  587  top
+  588  fg
+  589  top
+  590  jn
+  591  top
+  592  cd ../../..
+  593  cd fv3net/
+  594  git pull
+  595  git branch
+  596  git checkout master
+  597  git status
+  598  git commit workflows/emulation/dataset_exploration/*.ipynb
+  599  cd workflows/emulation/dataset_exploration/
+  600  la
+  601  cd ..
+  602  git branch
+  603  git add dataset_exploration/
+  604  git commit -m "committing current changes before pulling updates from fv3net"
+  605  git status
+  606  la
+  607  git pull
+  608  cd dataset_exploration/
+  609  du -h
+  610  la
+  611  pwd
+  612  cd ~/fv3net/
+  613  git remote -v
+  614  git branch
+  615  git checkout master
+  616  git remote -v
+  617  cd workflows/emulation/
+  618  la
+  619  cd dataset_exploration/
+  620  la
+  621  git branch
+  622  git checkout jacqn-emu-prognostic 
+  623  la
+  624  cd ..
+  625  la
+  626  cd dataset_exploration/
+  627  la
+  628  git remote -v
+  629  git remote add upstream https://github.com/VulcanClimateModeling/fv3net.git
+  630  git remote -v
+  631  git remote set-url upstream https://github.com/VulcanClimateModeling/fv3net.git
+  632  git remote -v
+  633  la
+  634  cd ..
+  635  la
+  636  cd ..
+  637  la
+  638  cd workflows/
+  639  cd emulation/
+  640  la
+  641  git checkout main
+  642  git branch
+  643  cd ../prognostic_run_diags/
+  644  la
+  645  cd fv3net
+  646  cd diagnostics/prognostic_run/views/
+  647  la
+  648  cd ~/fv3net/
+  649  git pull
+  650  git remote -v
+  651  git branch master
+  652  git branch
+  653  git checkout master
+  654  cd workflows/emulation/dataset_exploration/
+  655  la
+  656  cd ..
+  657  git status
+  658  git checkout master
+  659  git checkout jacqn-emu-prognostic 
+  660  git remote -v
+  661  git fetch upstream
+  662  git checkout master
+  663  git merge upstream/master
+  664  git checkout jacqn-emu-prognostic 
+  665  la
+  666  vi train_emulator.py 
+  667  git checkout master 
+  668  la
+  669  cd ..
+  670  cd emulation/
+  671  la
+  672  cd dataset_exploration/
+  673  la
+  674  git remove -v
+  675  git remote -v
+  676  git branch
+  677  git checkout jacqn-emu-prognostic 
+  678  la
+  679  history > history.txt
+  680  vi history.txt 
+  681  cd ..
+  682  la
+  683  vi dataset_exploration/history.txt 
+  684  git checkout
+  685  git branch
+  686  git pull
+  687  git checkout master
+  688  la
+  689  git branch
+  690  git remote -v
+  691  git fetch upstream
+  692  git merge upstream/master
+  693  git branch
+  694  cd ~/fv3net/
+  695  la
+  696  git branch
+  697  git pull
+  698  git remote
+  699  git remote -v
+  700  git checkout jacqn-emu-prognostic 
+  701  git remote -v
+  702  git pull
+  703  git pull origin master
+  704  cd workflows/emulation/
+  705  la
+  706  vi train_emulator.py 
+  707  git branch
+  708  git checkout master
+  709  history
+  710  git fetch origin
+  711  git status
+  712  cd ../../../
+  713  la
+  714  mv fv3net fv3net_original
+  715  mv fv3net_original/ fv3net
+  716  la
+  717  git checkout feature/all-physics-emu-prognostic
+  718  fg
+  719  git branch
+  720  cd fv3net/
+  721  git branch
+  722  cd workflows/emulation/
+  723  la
+  724  history
+  725  git branch
+  726  git fetch upstreaam
+  727  git fetch upstream
+  728  git checkout master
+  729  la
+  730  vi train_emulator.py 
+  731  git checkout master
+  732  git branch
+  733  git checkout master
+  734  git branch
+  735  cd dataset_exploration/
+  736  history > history.txt
