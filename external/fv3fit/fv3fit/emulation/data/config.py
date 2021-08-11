@@ -46,6 +46,9 @@ class TransformConfig:
         vertical_subselection: Limit the feature dimension of a variable
             to a specified range. Loaded in as slices from a 2 or 3 item
             sequence.
+        convert_to_tendencies: Converts the specific humidity, air temperature,
+            and cloud water mixing ratio input & output variables into
+            tendencies and adds those variables to the dataset.
 
     Example:
         Yaml file example::
@@ -58,6 +61,7 @@ class TransformConfig:
               a: [5]
               b: [5, None]
               c: [5, 20, 2]
+            convert_to_tendencies: true
     """
 
     input_variables: Sequence[str] = dataclasses.field(default_factory=list)
@@ -65,6 +69,7 @@ class TransformConfig:
     antarctic_only: bool = False
     use_tensors: bool = True
     vertical_subselections: Optional[Mapping[str, slice]] = None
+    convert_to_tendencies: bool = False
 
     @classmethod
     def from_dict(cls, d: Dict):
@@ -85,6 +90,9 @@ class TransformConfig:
 
         if self.antarctic_only:
             transform_funcs.append(transforms.select_antarctic)
+
+        if self.convert_to_tendencies:
+            transform_funcs.append(transforms.to_tendency)
 
         if self.use_tensors:
             transform_funcs.append(transforms.to_tensors)

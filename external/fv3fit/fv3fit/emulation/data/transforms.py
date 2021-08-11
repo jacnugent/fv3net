@@ -60,6 +60,26 @@ def select_antarctic(dataset: xr.Dataset, sample_dim_name="sample") -> xr.Datase
 
 
 @curry
+def to_tendency(dataset: xr.Dataset, dt=900) -> xr.Dataset:
+    """
+    Converts ouptuts of specific humidity, air temperature, and cloud condensate into
+    tendencies ((out-in)/dt; default is dt=900s). Requires '_input' and '_output'
+    variables in dataset for 'specific_humidity', 'air_temperature', and
+    'cloud_water_mixing_ratio'.
+    """
+    logger.debug("Converting outputs to tendencies")
+    qv_tend = (dataset["specific_humidity_output"] - dataset["specific_humidity_input"])/dt
+    T_tend = (dataset["air_temperature_output"] - dataset["air_temperature_input"])/dt
+    qc_tend = (dataset["cloud_water_mixing_ratio_output"] - dataset["cloud_water_mixing_ratio_input"])/dt
+    
+    dataset = dataset.assign(specific_humidity_tendency_due_to_microphysics=qv_tend)
+    dataset = dataset.assign(air_temperature_tendency_due_to_microphysics=T_tend)
+    dataset = dataset.assign(cloud_water_mixing_ratio_tendency_due_to_microphysics=qc_tend)
+
+    return dataset
+
+    
+@curry
 def group_inputs_outputs(
     input_variables: Sequence[str], output_variables: Sequence[str], dataset: AnyDataset
 ) -> Tuple[Sequence[NumericContainer], Sequence[NumericContainer]]:
