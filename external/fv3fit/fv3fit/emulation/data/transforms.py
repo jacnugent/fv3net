@@ -72,6 +72,12 @@ def to_tendency(dataset: xr.Dataset, dt=900) -> xr.Dataset:
     T_tend = (dataset["air_temperature_output"] - dataset["air_temperature_input"])/dt
     qc_tend = (dataset["cloud_water_mixing_ratio_output"] - dataset["cloud_water_mixing_ratio_input"])/dt
     
+    # what the names should be moving forward
+#     dataset = dataset.assign(tendency_of_specific_humidity_due_to_microphysics=qv_tend)
+#     dataset = dataset.assign(tendency_of_air_temperature_due_to_microphysics=T_tend)
+#     dataset = dataset.assign(tendency_of_cloud_water_mixing_ratio_due_to_microphysics=qc_tend)
+
+    # names in the currently saved models
     dataset = dataset.assign(specific_humidity_tendency_due_to_microphysics=qv_tend)
     dataset = dataset.assign(air_temperature_tendency_due_to_microphysics=T_tend)
     dataset = dataset.assign(cloud_water_mixing_ratio_tendency_due_to_microphysics=qc_tend)
