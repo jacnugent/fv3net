@@ -102,10 +102,10 @@ class TransformConfig:
         transform_funcs.append(transforms.expand_single_dim_data)
 
         # comment out this block to skip taking the subselections in the pipeline
-#         if self.vertical_subselections is not None:
-#             transform_funcs.append(
-#                 transforms.maybe_subselect_feature_dim(self.vertical_subselections)
-#             )
+        if self.vertical_subselections is not None:
+            transform_funcs.append(
+                transforms.maybe_subselect_feature_dim(self.vertical_subselections)
+            )
 
         transform_funcs.append(
             transforms.group_inputs_outputs(self.input_variables, self.output_variables)

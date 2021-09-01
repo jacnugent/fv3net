@@ -86,6 +86,24 @@ class FeatureMaxStd(NormLayer):
         self.sigma.assign(max_std)
 
 
+class FeatureAvgStd(NormLayer):
+    """
+    Build layer weights and fit a standard deviation value based
+    on the average of all features in a tensor (assumed first
+    dimension is samples).
+    """
+
+    def _build_sigma(self, in_shape):
+        self.sigma = self.add_weight(
+            "sigma", shape=[], dtype=tf.float32, trainable=False
+        )
+
+    def _fit_sigma(self, tensor):
+        stddev = tf.math.reduce_std(tensor, axis=0)
+        avg_std = tf.cast(tf.reduce_mean(stddev), tf.float32)
+        self.sigma.assign(avg_std)
+
+
 class StandardNormLayer(PerFeatureMean, PerFeatureStd):
     """
     Normalization layer that removes mean and standard
@@ -129,6 +147,29 @@ class MaxFeatureStdNormLayer(PerFeatureMean, FeatureMaxStd):
 class MaxFeatureStdDenormLayer(MaxFeatureStdNormLayer):
     """
     De-normalization layer that scales all features by the maximum
+    standard deviation calculated over all features and adds back
+    the mean for each individual feature.
+    """
+
+    def call(self, tensor):
+        return tensor * self.sigma + self.mean
+    
+
+class AvgFeatureStdNormLayer(PerFeatureMean, FeatureAvgStd):
+    """
+    Normalization layer that removes mean for each feature
+    individually but scales all features by the average standard
+    deviation calculated over all features. Useful to preserve
+    feature scale relationships.
+    """
+
+    def call(self, tensor):
+        return (tensor - self.mean) / self.sigma
+
+
+class AvgFeatureStdDenormLayer(AvgFeatureStdNormLayer):
+    """
+    De-normalization layer that scales all features by the average
     standard deviation calculated over all features and adds back
     the mean for each individual feature.
     """
